@@ -1,7 +1,34 @@
 @import './fonts.scss';
+@import './breakpoints.scss';
 
 body {
   margin: 0;
   font-family: 'Inter', 'sans-serif';
   font-weight: 600;
+}
+
+h1,
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 0 5px;
+
+  @include breakpoint-min (xs) {
+    padding: 0 15px;
+  }
+
+  @include breakpoint-min (sm) {
+    padding: 0 30px;
+  }
+
+  @include breakpoint-min (md) {
+    padding: 0 60px;
+  }
+
+  @include breakpoint-min (lg) {
+    padding: 0 90px;
+  }
 }

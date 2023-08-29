@@ -1,7 +1,11 @@
 import Topbar from './components/Topbar'
+import Presentation from './components/Presentation'
 
 export default function App() {
   return (
-    <Topbar />
+    <div>
+      <Topbar />
+      <Presentation />
+    </div>
   );
 }

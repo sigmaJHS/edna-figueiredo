@@ -1,0 +1,35 @@
+#presentation {
+  position: relative;
+  z-index: -2;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #2D2D2D;
+    opacity: .65;
+    z-index: -1;
+  }
+
+  .caption {
+    z-index: 1;
+    color: #fff;
+
+    h1 {
+      font-size: 80px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+  }
+}

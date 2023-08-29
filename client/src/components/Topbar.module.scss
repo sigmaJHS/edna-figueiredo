@@ -9,19 +9,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 5px;
-
-    @include breakpoint-min (xs) {
-      padding: 15px;
-    }
-
-    @include breakpoint-min (sm) {
-      padding: 15px 30px;
-    }
-
-    @include breakpoint-min (md) {
-      padding: 15px 60px;
-    }
+    padding: 15px 0;
 
     .brand {
       max-width: 150px;
