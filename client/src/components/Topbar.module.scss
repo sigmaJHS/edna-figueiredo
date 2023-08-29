@@ -1,0 +1,71 @@
+@import './../style/breakpoints.scss';
+
+#topbar {
+  background: #222;
+  width: 100%;
+
+  .topbar-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+
+    @include breakpoint-min (xs) {
+      padding: 15px;
+    }
+
+    @include breakpoint-min (sm) {
+      padding: 15px 30px;
+    }
+
+    @include breakpoint-min (md) {
+      padding: 15px 60px;
+    }
+
+    .brand {
+      max-width: 150px;
+
+      @include breakpoint-min (xs) {
+        max-width: 200px;
+      }
+
+      @include breakpoint-min (sm) {
+        max-width: 250px;
+      }
+    }
+
+    .contact {
+      font-size: 12px;
+      text-decoration: none;
+      color: #fff;
+      padding-top: 5px;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+
+      @include breakpoint-min (xs) {
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      @include breakpoint-min (sm) {
+        font-size: 16px;
+      }
+      
+      img {
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+        vertical-align: bottom;
+
+        @include breakpoint-min (sm) {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}
