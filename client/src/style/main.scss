@@ -29,6 +29,7 @@ ul {
 }
 
 .container {
+  text-align: center;
   padding: 0 5px;
 
   @include breakpoint-min (xs) {
