@@ -1,4 +1,5 @@
 @import './../style/breakpoints.scss';
+@import './../style/colors.scss';
 
 #presentation {
   position: relative;
@@ -49,8 +50,8 @@
   }
 
   .caption {
-    color: #fff;
-    background-color: rgba(#726C27, .8);
+    color: $white;
+    background-color: rgba($secondary, .8);
     position: absolute;
     right: 0;
     bottom: 20px;
@@ -81,7 +82,7 @@
       align-items: center;
       justify-content: center;
       vertical-align: top;
-      background-color: rgba(#726C27, 1);
+      background-color: rgba($secondary, 1);
     }
 
     h1 {
@@ -93,7 +94,7 @@
 
       span {
         font-size: 40px;
-        color: #D7DF23;
+        color: $tertiary;
 
         @include breakpoint-min (lg) {
           font-size: 48px;
@@ -150,9 +151,9 @@
 
       button {
         background-color: transparent;
-        border: 2px solid #fff;
+        border: 2px solid $white;
         text-transform: uppercase;
-        color: #fff;
+        color: $white;
         font-weight: bold;
         font-size: 14px;
         padding: 15px;

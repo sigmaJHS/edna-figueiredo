@@ -1,7 +1,8 @@
 @import './../style/breakpoints.scss';
+@import './../style/colors.scss';
 
 #topbar {
-  background: #222;
+  background: $primary;
   width: 100%;
   position: fixed;
   top: 0;
@@ -38,7 +39,7 @@
     .contact {
       font-size: 12px;
       text-decoration: none;
-      color: #fff;
+      color: $white;
       padding-top: 5px;
 
       &:hover,

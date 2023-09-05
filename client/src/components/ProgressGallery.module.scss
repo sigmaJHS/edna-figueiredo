@@ -1,4 +1,5 @@
 @import './../style/breakpoints.scss';
+@import './../style/colors.scss';
 
 #progress {
   margin-top: 20px;
@@ -23,7 +24,7 @@
 
   h4 {
     font-size: 11px;
-    color: #5C5C5C;
+    color: $gray;
     text-align: center;
 
     @include breakpoint-min (xs) {
