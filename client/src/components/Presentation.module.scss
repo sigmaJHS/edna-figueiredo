@@ -157,6 +157,14 @@
         font-weight: bold;
         font-size: 14px;
         padding: 15px;
+        transition: .1s;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+          background: $white;
+          color: $secondary;
+        }
 
         @include breakpoint-min (lg) {
           font-size: 16px;
