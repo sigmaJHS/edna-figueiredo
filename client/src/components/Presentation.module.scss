@@ -2,31 +2,53 @@
 
 #presentation {
   position: relative;
-  z-index: 1;
-  height: 400px;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  height: 350px;
 
   @include breakpoint-min (xs) {
-    height: 500px;
+    height: 450px;
   }
 
-  // &:after {
-  //   content: '';
-  //   position: absolute;
-  //   display: block;
-  //   top: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   left: 0;
-  //   background-color: #2D2D2D;
-  //   opacity: .65;
-  //   z-index: -1;
-  // }
+  @include breakpoint-min (md) {
+    height: 650px;
+  }
+
+  @include breakpoint-min (lg) {
+    height: 450px;
+  }
+
+  @include breakpoint-min (xl) {
+    height: 550px;
+  }
+
+  @include breakpoint-min (xxl) {
+    height: 750px;
+  }
+
+  .bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    @include breakpoint-min (lg) {
+      position: relative;
+      display: inline-block;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+      height: 100%;
+      width: 55%;
+      vertical-align: top;
+    }
+  }
 
   .caption {
-    z-index: 2;
     color: #fff;
     background-color: rgba(#726C27, .8);
     position: absolute;
@@ -35,23 +57,71 @@
     width: 200px;
     padding: 15px;
 
+    @include breakpoint-min (sm) {
+      width: 250px;
+      bottom: 50px;
+    }
+
+    @include breakpoint-min (md) {
+      width: 300px;
+      right: 50px;
+      bottom: 100px;
+      padding: 25px;
+    }
+
+    @include breakpoint-min (lg) {
+      position: relative;
+      bottom: auto;
+      right: auto;
+      width: 45%;
+      height: 100%;
+      padding: 0;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      vertical-align: top;
+      background-color: rgba(#726C27, 1);
+    }
+
     h1 {
       font-size: 32px;
+
+      @include breakpoint-min (lg) {
+        font-size: 40px;
+      }
 
       span {
         font-size: 40px;
         color: #D7DF23;
+
+        @include breakpoint-min (lg) {
+          font-size: 48px;
+        }
       }
     }
 
     h2 {
       font-size: 27px;
       margin-top: 5px;
+
+      @include breakpoint-min (lg) {
+        font-size: 32px;
+        margin-top: 10px;
+      }
     }
 
     h3 {
       font-size: 14px;
       font-weight: lighter;
+
+      @include breakpoint-min (sm) {
+        font-size: 16px; 
+      }
+
+      @include breakpoint-min (lg) {
+        font-size: 21px; 
+      }
     }
 
     ul {
@@ -59,6 +129,19 @@
       padding-left: 20px;
       list-style: "- ";
       margin: 15px 0;
+
+      @include breakpoint-min (sm) {
+        font-size: 14px; 
+      }
+
+      @include breakpoint-min (lg) {
+        font-size: 16px;
+        margin: 20px 0;
+
+        li {
+          margin-bottom: 2px;
+        }
+      }
     }
 
     .button-row {
@@ -73,6 +156,11 @@
         font-weight: bold;
         font-size: 14px;
         padding: 15px;
+
+        @include breakpoint-min (lg) {
+          font-size: 16px;
+          padding: 20px 50px;
+        }
       }
     }
   }
