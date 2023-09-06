@@ -15,6 +15,7 @@ export default function Topbar () {
           <a
             className={style['contact']}
             href='https://wa.me/5511942242089'
+            target='blank'
           >
             <img src={whatsapp} alt='whatsapp' />
             (11) 94224-2089

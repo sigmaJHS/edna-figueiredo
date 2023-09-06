@@ -38,13 +38,13 @@
 
     .contact {
       font-size: 12px;
-      text-decoration: none;
+      text-decoration: underline;
       color: $white;
       padding-top: 5px;
 
       &:hover,
       &:focus {
-        text-decoration: underline;
+        text-decoration: none;
       }
 
       @include breakpoint-min (xs) {
