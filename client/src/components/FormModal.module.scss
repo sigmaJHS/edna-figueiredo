@@ -1,0 +1,103 @@
+@import './../style/colors.scss';
+@import './../style/breakpoints.scss';
+
+#overlay {
+  display: none;
+  content: '';
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $black;
+  opacity: .8;
+}
+
+#modal {
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 4;
+  width: 100%;
+  box-shadow: 0 0 5px 0;
+  border-radius: 5px;
+  background-color: $white;
+  transition: .2s;
+
+  &[data-open="true"] {
+    top: 50%;
+
+    &+#overlay {
+      display: block;
+    }
+  }
+
+  @media (orientation: landscape) {
+    @include breakpoint-max (md) {
+      height: 100%;
+      transform: translate(-50%, 0);
+
+      &[data-open="true"] {
+        top: 0; 
+      }
+    }
+  }
+
+  @include breakpoint-min (xs) {
+    width: 80%;
+  }
+
+  @include breakpoint-min (sm) {
+    width: 60%;
+  }
+
+  @include breakpoint-min (md) {
+    width: 50%;
+  }
+
+  @include breakpoint-min (lg) {
+    width: 40%;
+  }
+
+  .close {
+    position: absolute;
+    right: 25px;
+    top: 10px;
+    font-family: monospace;
+    font-size: 21px;
+    font-weight: lighter;
+    cursor: pointer;
+  }
+
+  .modal-inner {
+    padding: 25px;
+    overflow-y: scroll;
+
+    @include breakpoint-min (xs) {
+      padding: 30px;
+    }
+
+    @include breakpoint-min (sm) {
+      padding: 35px;
+    }
+
+    @include breakpoint-min (md) {
+      padding: 40px;
+    }
+
+    h3 {
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 15px;
+
+      @include breakpoint-min (lg) {
+        margin-bottom: 25px;
+      }
+    }
+  }
+}

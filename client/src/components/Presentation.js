@@ -1,7 +1,4 @@
-// import SimulationForm from './SimulationForm'
-
 import style from './Presentation.module.scss'
-
 import bg from './../assets/vila-romana.jpg'
 
 export default function Presentation () {
