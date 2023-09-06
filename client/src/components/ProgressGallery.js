@@ -38,7 +38,7 @@ export default function ProgressGallery () {
         slide={lightboxController.slide}
       />
       <div className='container'>
-        <h3>Confira o andamento as obras</h3>
+        <h3>Confira o andamento das obras</h3>
         <h4>(imagens de agosto de 2023)</h4>
         <ul className={style['images']}>
           {
