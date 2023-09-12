@@ -7,25 +7,76 @@ import Footer from './components/Footer'
 import Modal from './components/Modal'
 import SimulationForm from './components/SimulationForm'
 import Loading from './components/Loading'
+import Notification from './components/Notification'
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState (false);
   const [isLoading, setLoading] = useState (false);
-
+  const [notification, setNotification] = useState (
+    {
+      'isOpen': false,
+      'message': 'lorem ipsum dolor sit amet',
+      'status': 'success'
+    }
+  );
+  
   function toggleModalOpen () {
     setIsModalOpen(!isModalOpen);
+  }
+
+  function closeNotification (status, message) {
+    setNotification (
+      {
+        'isOpen': false,
+        'message': message,
+        'status': status
+      }
+    );
+  }
+
+  function triggerNotification (status, message) {
+    setNotification (
+      {
+        'isOpen': true,
+        'message': message,
+        'status': status
+      }
+    )
+
+    setIsModalOpen(false);
+
+    setTimeout (
+      function () {
+        closeNotification(status, message);
+      },
+      5000
+    )
   }
 
   return (
     <div>
       <Topbar />
-      <Presentation toggleModal={toggleModalOpen} />
+      <Presentation
+        toggleModal={toggleModalOpen}
+      />
       <ProgressGallery />
       <Footer />
-      <Modal isOpen={isModalOpen} toggle={toggleModalOpen}>
-        <SimulationForm setLoading={setLoading} />
+      <Modal
+        isOpen={isModalOpen}
+        toggle={toggleModalOpen}
+      >
+        <SimulationForm
+          setLoading={setLoading}
+          triggerNotification={triggerNotification}
+        />
       </Modal>
       <Loading isLoading={isLoading} />
+      <Notification
+        isOpen={notification.isOpen}
+        close={closeNotification}
+        message={notification.message}
+        status={notification.status}
+      />
     </div>
   );
 }

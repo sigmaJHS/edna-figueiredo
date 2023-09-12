@@ -1,0 +1,74 @@
+@import './../style/breakpoints.scss';
+@import './../style/colors.scss';
+
+#notification {
+  background-color: $white;
+  position: fixed;
+  bottom: -10px;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  transition: .4s;
+  z-index: 5;
+  box-shadow: 0 0 5px 0;
+  max-width: 95%;
+
+  &[data-open="true"] {
+    bottom: 30px;
+    transform: translate(-50%, 0);
+  }
+
+  .close {
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: lighter;
+    cursor: pointer;
+    color: $grey;
+  }
+
+  .notification-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    .status {
+      width: 30px;
+      min-width: 30px;
+      line-height: 30px;
+      height: 30px;
+      text-align: center;
+      border: 3px solid;
+      border-radius: 50%;
+      color: $blue;
+      border-color: $blue;
+  
+      &[data-status="success"] {
+        color: $green;
+        border-color: $green;
+      }
+    
+      &[data-status="error"] {
+        color: $red;
+        border-color: $red;
+      }
+  
+      .icon {
+        font-size: 21px;
+        vertical-align: middle;
+        color: inherit;
+      }
+    }
+  
+    .message {
+      font-size: 16px;
+      line-height: 30px;
+      color: $grey;
+      vertical-align: middle;
+      margin-left: 20px;
+    }
+  }
+}
