@@ -1,7 +1,7 @@
 import style from './Presentation.module.scss'
 import bg from './../assets/vila-romana.jpg'
 
-export default function Presentation () {
+export default function Presentation (props) {
   return (
     <div id={style['presentation']}>
       <div
@@ -24,7 +24,7 @@ export default function Presentation () {
             <li>Saia do aluguel!</li>
           </ul>
           <div className={style['button-row']}>
-            <button>Pedir simulação</button>
+            <button onClick={props.toggleModal}>Pedir simulação</button>
           </div>
         </div>
       </div>
