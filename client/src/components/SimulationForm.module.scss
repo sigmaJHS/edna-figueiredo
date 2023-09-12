@@ -2,6 +2,16 @@
 @import './../style/breakpoints.scss';
 
 #form {
+  .title {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 15px;
+
+    @include breakpoint-min (lg) {
+      margin-bottom: 25px;
+    }
+  }
+
   .form-row {
     display: block;
     width: 100%;

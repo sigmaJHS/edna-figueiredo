@@ -3,6 +3,7 @@ import style from './SimulationForm.module.scss'
 export default function SimulationForm () {
   return (
     <form id={style['form']}>
+      <h3 className={style['title']}>Faça uma simulação gratuita!</h3>
       <div className={style['form-row']}>
         <label htmlFor='nome'>Nome completo</label>
         <input
