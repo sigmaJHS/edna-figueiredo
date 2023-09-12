@@ -1,8 +1,39 @@
+import axios from 'axios'
+
 import style from './SimulationForm.module.scss'
 
-export default function SimulationForm () {
+export default function SimulationForm (props) {
+  function handleSubmit (event) {
+    event.preventDefault();
+
+    props.setLoading(true);
+
+    axios.post(
+      process.env.REACT_APP_BACKEND_SERVER + '/simulation',
+      new FormData(event.target),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }
+      }
+    ).then(
+      function (data) {
+        console.log(data);
+      }
+    ).catch(
+      function (data) {
+        console.log(data);
+      }
+    ).finally(
+      function () {
+        props.setLoading(false);
+      }
+    );
+  }
+
   return (
-    <form id={style['form']}>
+    <form id={style['form']} onSubmit={handleSubmit}>
       <h3 className={style['title']}>Faça uma simulação gratuita!</h3>
       <div className={style['form-row']}>
         <label htmlFor='nome'>Nome completo</label>
