@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Topbar from './components/Topbar'
 import Presentation from './components/Presentation'
@@ -18,6 +18,17 @@ export default function App() {
       'message': 'lorem ipsum dolor sit amet',
       'status': 'success'
     }
+  );
+
+  useEffect(
+    function () {
+      if(isModalOpen || isLoading) {
+        document.body.style.overflow = "hidden";
+      }else{
+        document.body.style.overflow = null;
+      }
+    },
+    [isModalOpen, isLoading]
   );
   
   function toggleModalOpen () {
