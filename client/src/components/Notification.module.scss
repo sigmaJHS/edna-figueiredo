@@ -10,11 +10,31 @@
   transition: .4s;
   z-index: 5;
   box-shadow: 0 0 5px 0;
-  max-width: 95%;
+  width: 90%;
 
   &[data-open="true"] {
     bottom: 30px;
     transform: translate(-50%, 0);
+  }
+
+  @include breakpoint-min (xs) {
+    width: 75%;
+  }
+
+  @include breakpoint-min (sm) {
+    width: 60%;
+  }
+
+  @include breakpoint-min (md) {
+    width: 50%;
+  }
+
+  @include breakpoint-min (lg) {
+    width: 40%;
+  }
+
+  @include breakpoint-min (xl) {
+    width: 30%;
   }
 
   .close {
@@ -31,20 +51,22 @@
   .notification-inner {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 10px;
+    padding: 10px 20px;
+
+    @include breakpoint-min (sm) {
+      padding: 10px 25px;
+    }
 
     .status {
-      width: 30px;
-      min-width: 30px;
-      line-height: 30px;
-      height: 30px;
       text-align: center;
       border: 3px solid;
       border-radius: 50%;
       color: $blue;
       border-color: $blue;
+      margin-right: 20px;
+      padding: 4px;
   
       &[data-status="success"] {
         color: $green;
@@ -64,11 +86,9 @@
     }
   
     .message {
-      font-size: 16px;
-      line-height: 30px;
+      font-size: 14px;
       color: $grey;
       vertical-align: middle;
-      margin-left: 20px;
     }
   }
 }

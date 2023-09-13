@@ -3,7 +3,7 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', 'sans-serif';
+  font-family: $sans;
   font-weight: 600;
   padding-top: 70px;
 
@@ -21,6 +21,10 @@ h6 {
   margin: 0;
   padding: 0;
   line-height: 1;
+}
+
+p {
+  font-family: $serif;
 }
 
 ul {

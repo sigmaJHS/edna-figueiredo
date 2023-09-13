@@ -31,11 +31,11 @@ export default function Notification (props) {
         >
           <Icon className={style['icon']} />
         </div>
-        <div
+        <p
           className={style['message']}
         >
           {props.message}
-        </div>
+        </p>
       </div>
     </div>
   );

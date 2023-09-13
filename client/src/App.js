@@ -15,8 +15,8 @@ export default function App() {
   const [notification, setNotification] = useState (
     {
       'isOpen': false,
-      'message': 'lorem ipsum dolor sit amet',
-      'status': 'success'
+      'message': '',
+      'status': ''
     }
   );
 
