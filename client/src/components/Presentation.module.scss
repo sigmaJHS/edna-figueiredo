@@ -58,16 +58,21 @@
     width: 200px;
     padding: 15px;
 
+    @include breakpoint-min (xs) {
+      padding: 20px;
+    }
+
     @include breakpoint-min (sm) {
       width: 250px;
       bottom: 50px;
+      padding: 25px;
     }
 
     @include breakpoint-min (md) {
       width: 300px;
       right: 50px;
       bottom: 100px;
-      padding: 25px;
+      padding: 30px;
     }
 
     @include breakpoint-min (lg) {
