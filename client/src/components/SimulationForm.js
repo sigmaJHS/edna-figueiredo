@@ -1,6 +1,9 @@
 import axios from 'axios'
 
 import TextInput from './inputs/TextInput'
+import DateInput from './inputs/DateInput'
+import MoneyInput from './inputs/MoneyInput'
+import ContactInput from './inputs/ContactInput'
 
 import style from './SimulationForm.module.scss'
 
@@ -21,11 +24,11 @@ export default function SimulationForm (props) {
       }
     ).then(
       function (response) {
-        props.triggerNotification('success', 'success')
+        props.triggerNotification('success', 'Simulação solicitada! Aguarde nosso contato nos próximos dias.')
       }
     ).catch(
       function (response) {
-        props.triggerNotification('error', 'error')
+        props.triggerNotification('error', 'Ocorreu um erro ao solicitar sua simulação, por favor tente novamente mais tarde')
       }
     ).finally(
       function () {
@@ -45,7 +48,7 @@ export default function SimulationForm (props) {
       'name': 'nascimento',
       'label': 'Data de nascimento',
       'placeholder': 'ex. 01/01/2023',
-      'component': TextInput
+      'component': DateInput
     },
     {
       'name': 'cidade',
@@ -57,19 +60,19 @@ export default function SimulationForm (props) {
       'name': 'renda',
       'label': 'Renda familiar mensal',
       'placeholder': 'ex. R$ 5.000,00',
-      'component': TextInput
+      'component': MoneyInput
     },
     {
       'name': 'fgts',
       'label': 'Valor do FGTS (opcional)',
       'placeholder': 'ex. R$ 1.000,00',
-      'component': TextInput
+      'component': MoneyInput
     },
     {
       'name': 'contato',
       'label': 'Email ou telefone para contato',
-      'placeholder': 'ex. (99) 99999-9999',
-      'component': TextInput
+      'placeholder': 'Certifique-se que está digitado corretamente',
+      'component': ContactInput
     }
   ];
 
