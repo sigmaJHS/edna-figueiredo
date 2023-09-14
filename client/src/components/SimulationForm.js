@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import axios from 'axios'
 
 import TextInput from './inputs/TextInput'
@@ -8,8 +9,74 @@ import ContactInput from './inputs/ContactInput'
 import style from './SimulationForm.module.scss'
 
 export default function SimulationForm (props) {
+  const [showErrors, setShowErrors] = useState(false);
+
+  const fields = [
+    {
+      'name': 'nome',
+      'label': 'Nome completo',
+      'placeholder': 'ex. Fulano Da Silva',
+      'component': TextInput,
+      'required': true,
+      'valid': false,
+      'error': 'Por favor, digite seu nome completo'
+    },
+    {
+      'name': 'nascimento',
+      'label': 'Data de nascimento',
+      'placeholder': 'ex. 01/01/2023',
+      'component': DateInput,
+      'required': true,
+      'valid': false,
+      'error': 'Por favor, digite uma data válida'
+    },
+    {
+      'name': 'cidade',
+      'label': 'Cidade onde mora',
+      'placeholder': 'ex. Itatiba/SP',
+      'component': TextInput,
+      'required': true,
+      'valid': false,
+      'error': 'Por favor, digite o nome da sua cidade'
+    },
+    {
+      'name': 'renda',
+      'label': 'Renda familiar mensal',
+      'placeholder': 'ex. R$ 5.000,00',
+      'component': MoneyInput,
+      'required': true,
+      'valid': false,
+      'error': 'Por favor, digite um valor válido'
+    },
+    {
+      'name': 'fgts',
+      'label': 'Valor do FGTS (opcional)',
+      'placeholder': 'ex. R$ 1.000,00',
+      'component': MoneyInput,
+      'required': false,
+      'valid': false,
+      'error': 'Por favor, digite um valor válido'
+    },
+    {
+      'name': 'contato',
+      'label': 'Email ou telefone para contato',
+      'placeholder': 'Certifique-se que está digitado corretamente',
+      'component': ContactInput,
+      'required': true,
+      'valid': false,
+      'error': 'Por favor, digite um email ou telefone válido'
+    }
+  ];
+
   function handleSubmit (event) {
     event.preventDefault();
+
+    for(let key in fields) {
+      if(fields[key].valid === false) {
+        setShowErrors(true);
+        return;
+      }
+    }
 
     props.setLoading(true);
 
@@ -37,44 +104,14 @@ export default function SimulationForm (props) {
     );
   }
 
-  const fields = [
-    {
-      'name': 'nome',
-      'label': 'Nome completo',
-      'placeholder': 'ex. Fulano Da Silva',
-      'component': TextInput
-    },
-    {
-      'name': 'nascimento',
-      'label': 'Data de nascimento',
-      'placeholder': 'ex. 01/01/2023',
-      'component': DateInput
-    },
-    {
-      'name': 'cidade',
-      'label': 'Cidade onde mora',
-      'placeholder': 'ex. Itatiba/SP',
-      'component': TextInput
-    },
-    {
-      'name': 'renda',
-      'label': 'Renda familiar mensal',
-      'placeholder': 'ex. R$ 5.000,00',
-      'component': MoneyInput
-    },
-    {
-      'name': 'fgts',
-      'label': 'Valor do FGTS (opcional)',
-      'placeholder': 'ex. R$ 1.000,00',
-      'component': MoneyInput
-    },
-    {
-      'name': 'contato',
-      'label': 'Email ou telefone para contato',
-      'placeholder': 'Certifique-se que está digitado corretamente',
-      'component': ContactInput
+  function updateValidity (inputName, valid) {
+    for(let key in fields) {
+      if(fields[key].name === inputName) {
+        fields[key].valid = valid;
+        console.log(fields[key].valid);
+      }
     }
-  ];
+  }
 
   return (
     <form id={style['form']} onSubmit={handleSubmit}>
@@ -89,7 +126,14 @@ export default function SimulationForm (props) {
                   id={field.name}
                   name={field.name}
                   placeholder={field.placeholder}
+                  updateValidity={(valid) => {updateValidity(field.name, valid)}}
                 />
+                <p
+                  className={style['error']}
+                  show={(showErrors && !field.valid) ? 'true' : 'false'}
+                >
+                  {field.error}
+                </p>
               </div>
             );
           }
