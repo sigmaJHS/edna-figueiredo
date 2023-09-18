@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import axios from 'axios'
-
-import FormRow from './FormRow'
 
 import style from './SimulationForm.module.scss'
+
+import Form from './Form'
+import FormRow from './FormRow'
 import ButtonRow from './ButtonRow';
 
 export default function SimulationForm (props) {
@@ -14,56 +14,43 @@ export default function SimulationForm (props) {
       'nascimento': false,
       'cidade': false,
       'renda': false,
-      'fgts': false,
+      'fgts': true,
       'contato': false
     }
   );
-
-  function handleSubmit (event) {
-    event.preventDefault();
-    
-    for(let field of Object.entries(fieldsAreValid)) {
-      if(field[1] === false) {
-        setShowErrors(true);
-        return;
-      }
-    }
-
-    props.setLoading(true);
-
-    axios.post(
-      process.env.REACT_APP_BACKEND_SERVER + '/simulation',
-      new FormData(event.target),
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        }
-      }
-    ).then(
-      function (response) {
-        props.triggerNotification('success', 'Simulação solicitada! Aguarde nosso contato nos próximos dias.')
-      }
-    ).catch(
-      function (response) {
-        props.triggerNotification('error', 'Ocorreu um erro ao solicitar sua simulação, por favor tente novamente mais tarde')
-      }
-    ).finally(
-      function () {
-        props.setLoading(false);
-      }
-    );
-  }
 
   function updateFieldIsValid (fieldName, isValid) {
     setFieldsAreValid ({...fieldsAreValid, [fieldName]: isValid});
   }
 
+  function validateForm () {
+    for(let field of Object.entries(fieldsAreValid)) {
+      if(field[1] === false) {
+        setShowErrors(true);
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function success (response) {
+    props.triggerNotification('success', 'Simulação solicitada! Aguarde nosso contato nos próximos dias.')
+  }
+
+  function error (response) {
+    props.triggerNotification('error', 'Ocorreu um erro ao solicitar sua simulação, por favor tente novamente mais tarde.')
+  }
+
   return (
-    <form
+    <Form
       id={style['form']}
-      onSubmit={handleSubmit}
-      noValidate
+      action={process.env.REACT_APP_BACKEND_SERVER + '/simulation'}
+      validate={validateForm}
+      success={success}
+      error={error}
+      setLoading={props.setLoading}
+      triggerNotification={props.triggerNotification}
     >
       <h3 className={style['title']}>Faça uma simulação gratuita!</h3>
       <FormRow
@@ -127,6 +114,6 @@ export default function SimulationForm (props) {
         updateIsValid={updateFieldIsValid}
       />
       <ButtonRow>Pedir simulação</ButtonRow>
-    </form>
+    </Form>
   );
 }
