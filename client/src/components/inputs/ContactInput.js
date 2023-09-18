@@ -1,9 +1,11 @@
+import Input from './Input'
+
 export default function ContactInput (props) {
   function validate (event) {
     let value = event.target.value,
         numbersOnlyValue = value.replaceAll(/\D/g, '');
         
-    props.updateValidity(
+    props.updateFieldIsValid(
       (
         numbersOnlyValue.length >= 8 && numbersOnlyValue.length <= 15
       ) || (
@@ -19,10 +21,9 @@ export default function ContactInput (props) {
   }
 
   return (
-    <input
-      name={props.name}
+    <Input
+      {...props}
       type={'text'}
-      placeholder={props.placeholder ?? ''}
       onInput={validate}
     />
   );
