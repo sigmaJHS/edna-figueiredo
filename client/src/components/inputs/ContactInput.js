@@ -1,3 +1,5 @@
+import Input from './Input'
+
 export default function ContactInput (props) {
   function validate (event) {
     let value = event.target.value,
@@ -19,7 +21,7 @@ export default function ContactInput (props) {
   }
 
   return (
-    <input
+    <Input
       name={props.name}
       type={'text'}
       placeholder={props.placeholder ?? ''}

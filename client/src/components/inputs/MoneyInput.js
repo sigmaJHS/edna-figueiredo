@@ -1,4 +1,4 @@
-import { useMaskito } from '@maskito/react';
+import Input from './Input'
 import { maskitoNumberOptionsGenerator } from '@maskito/kit';
 
 export default function MoneyInput (props) {
@@ -21,12 +21,12 @@ export default function MoneyInput (props) {
   );
 
   return (
-    <input
+    <Input
       type='text'
       name={props.name}
       placeholder={props.placeholder}
-      ref={useMaskito({options})}
       onInput={validate}
+      maskOptions={options}
     />
   )
 }

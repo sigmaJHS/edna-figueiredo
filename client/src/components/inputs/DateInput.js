@@ -1,5 +1,6 @@
-import { useMaskito } from '@maskito/react';
-import { maskitoDateOptionsGenerator } from '@maskito/kit';
+import Input from './Input'
+
+import { maskitoDateOptionsGenerator } from '@maskito/kit'
 
 export default function DateInput (props) {
   function validate (event) {
@@ -16,11 +17,11 @@ export default function DateInput (props) {
   );
 
   return (
-    <input
+    <Input
       type='text'
       name={props.name}
       placeholder={props.placeholder}
-      ref={useMaskito({options})}
+      maskOptions={options}
       onInput={validate}
     />
   )
