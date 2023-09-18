@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-import TextInput from './inputs/TextInput'
-import DateInput from './inputs/DateInput'
-import MoneyInput from './inputs/MoneyInput'
-import ContactInput from './inputs/ContactInput'
+import FormRow from './FormRow'
 
 import style from './SimulationForm.module.scss'
+import ButtonRow from './ButtonRow';
 
 export default function SimulationForm (props) {
   const [showErrors, setShowErrors] = useState(false);
@@ -21,66 +19,9 @@ export default function SimulationForm (props) {
     }
   );
 
-  const fields = [
-    {
-      'name': 'nome',
-      'label': 'Nome completo',
-      'placeholder': 'ex. Fulano Da Silva',
-      'component': TextInput,
-      'required': true,
-      'valid': false,
-      'error': 'Por favor, digite seu nome completo'
-    },
-    {
-      'name': 'nascimento',
-      'label': 'Data de nascimento',
-      'placeholder': 'ex. 01/01/2023',
-      'component': DateInput,
-      'required': true,
-      'valid': false,
-      'error': 'Por favor, digite uma data válida'
-    },
-    {
-      'name': 'cidade',
-      'label': 'Cidade onde mora',
-      'placeholder': 'ex. Itatiba/SP',
-      'component': TextInput,
-      'required': true,
-      'valid': false,
-      'error': 'Por favor, digite o nome da sua cidade'
-    },
-    {
-      'name': 'renda',
-      'label': 'Renda familiar mensal',
-      'placeholder': 'ex. R$ 5.000,00',
-      'component': MoneyInput,
-      'required': true,
-      'valid': false,
-      'error': 'Por favor, digite um valor válido'
-    },
-    {
-      'name': 'fgts',
-      'label': 'Valor do FGTS (opcional)',
-      'placeholder': 'ex. R$ 1.000,00',
-      'component': MoneyInput,
-      'required': false,
-      'valid': false,
-      'error': 'Por favor, digite um valor válido'
-    },
-    {
-      'name': 'contato',
-      'label': 'Email ou telefone para contato',
-      'placeholder': 'Certifique-se que está digitado corretamente',
-      'component': ContactInput,
-      'required': true,
-      'valid': false,
-      'error': 'Por favor, digite um email ou telefone válido'
-    }
-  ];
-
   function handleSubmit (event) {
     event.preventDefault();
-    
+    console.log(Object.entries(fieldsAreValid));
     for(let field of Object.entries(fieldsAreValid)) {
       if(field[1] === false) {
         setShowErrors(true);
@@ -114,39 +55,75 @@ export default function SimulationForm (props) {
     );
   }
 
-  function updateFieldIsValid (inputName, isValid) {
-    setFieldsAreValid ({...fieldsAreValid, [inputName]: isValid});
+  function updateFieldIsValid (fieldName, isValid) {
+    setFieldsAreValid ({...fieldsAreValid, [fieldName]: isValid});
   }
 
   return (
-    <form id={style['form']} onSubmit={handleSubmit}>
+    <form
+      id={style['form']}
+      onSubmit={handleSubmit}
+      noValidate
+    >
       <h3 className={style['title']}>Faça uma simulação gratuita!</h3>
-      {
-        fields.map(
-          function (field, key) {
-            return (
-              <div key={key} className={style['form-row']}>
-                <label htmlFor={field.name}>{field.label}</label>
-                <field.component
-                  id={field.name}
-                  name={field.name}
-                  placeholder={field.placeholder}
-                  updateFieldIsValid={(valid) => {updateFieldIsValid(field.name, valid)}}
-                />
-                <p
-                  className={style['error']}
-                  show={(showErrors === true && fieldsAreValid[field.name] === false) ? 'true' : 'false'}
-                >
-                  {field.error}
-                </p>
-              </div>
-            );
-          }
-        )
-      }
-      <div className={`${style['form-row']} ${style['button-row']}`}>
-        <button>Pedir simulação</button>
-      </div>
+      <FormRow
+        type='text'
+        name='nome'
+        label='Nome completo'
+        placeholder='ex. Fulano Da Silva'
+        showErrors={(showErrors === true && fieldsAreValid.nome === false)}
+        errorMessage='favor, digite seu nome completo'
+        updateIsValid={updateFieldIsValid}
+      />
+      <FormRow
+        type='date'
+        name='nascimento'
+        label='Data de nascimento'
+        placeholder='ex. 01/01/2023'
+        showErrors={(showErrors === true && fieldsAreValid.nascimento === false)}
+        errorMessage='Por favor, digite uma data válida'
+        updateIsValid={updateFieldIsValid}
+      />
+      <FormRow
+        type='text'
+        name='cidade'
+        label='Cidade onde mora'
+        placeholder='ex. Itatiba/SP'
+        showErrors={(showErrors === true && fieldsAreValid.cidade === false)}
+        errorMessage='Por favor, digite o nome da sua cidade'
+        updateIsValid={updateFieldIsValid}
+      />
+      <FormRow
+        type='money'
+        name='renda'
+        label='Renda familiar mensal'
+        placeholder='ex. R$ 4.000,00'
+        required={true}
+        errorMessage='Por favor, digite um valor válido'
+        showErrors={(showErrors === true && fieldsAreValid.renda === false)}
+        updateIsValid={updateFieldIsValid}
+      />
+      <FormRow
+        type='money'
+        name='fgts'
+        label='Valor do FGTS (opcional)'
+        placeholder='ex. R$ 1.000,00'
+        required={false}
+        errorMessage='Por favor, digite um valor válido'
+        showErrors={(showErrors === true && fieldsAreValid.fgts === false)}
+        updateIsValid={updateFieldIsValid}
+      />
+      <FormRow
+        type='contact'
+        name='contato'
+        label='Email ou telefone para contato'
+        placeholder='Certifique-se que está digitado corretamente'
+        showErrors={(showErrors === true && fieldsAreValid.contato === false)}
+        errorMessage='Por favor, digite um email ou telefone válido'
+        required={true}
+        updateIsValid={updateFieldIsValid}
+      />
+      <ButtonRow>Pedir simulação</ButtonRow>
     </form>
   );
 }

@@ -7,7 +7,7 @@ export default function MoneyInput (props) {
       event.target.value.replaceAll(/R|\$| /g, '').replace(',','.')
     );
     
-    props.updateFieldIsValid(rawValue > 0);
+    props.updateIsValid(rawValue > 0);
   }
 
   const options = maskitoNumberOptionsGenerator(

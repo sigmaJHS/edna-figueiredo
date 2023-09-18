@@ -1,4 +1,3 @@
-@import './../style/colors.scss';
 @import './../style/breakpoints.scss';
 
 #form {
@@ -9,65 +8,6 @@
 
     @include breakpoint-min (lg) {
       margin-bottom: 25px;
-    }
-  }
-
-  .form-row {
-    display: block;
-    width: 100%;
-    margin-bottom: 5px;
-
-    &.button-row {
-      margin-top: 20px;
-      text-align: right;
-
-      @include breakpoint-min (lg) {
-        margin-top: 30px;
-      }
-
-      button {
-        background-color: $secondary;
-        color: $white;
-        text-transform: uppercase;
-        border: 1px solid $secondary;
-        padding: 10px;
-        font-size: 12px;
-        cursor: pointer;
-
-        &:hover,
-        &:focus {
-          background-color: transparent;
-          color: $black;
-        }
-      }
-    }
-
-    label {
-      text-transform: uppercase;
-      font-size: 11px;
-    }
-
-    input {
-      display: block;
-      width: 100%;
-      height: 30px;
-      padding: 0;
-      padding-left: 10px;
-      box-sizing: border-box;
-    }
-
-    .error {
-      display: none;
-      margin: 0;
-      padding: 0;
-      font-size: 12px;
-      line-height: 1;
-      color: red;
-      font-weight: 700;
-
-      &[show="true"] {
-        display: block;
-      }
     }
   }
 }
