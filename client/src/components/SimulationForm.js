@@ -10,6 +10,16 @@ import style from './SimulationForm.module.scss'
 
 export default function SimulationForm (props) {
   const [showErrors, setShowErrors] = useState(false);
+  const [fieldsAreValid, setFieldsAreValid] = useState(
+    {
+      'nome': false,
+      'nascimento': false,
+      'cidade': false,
+      'renda': false,
+      'fgts': false,
+      'contato': false
+    }
+  );
 
   const fields = [
     {
@@ -70,9 +80,9 @@ export default function SimulationForm (props) {
 
   function handleSubmit (event) {
     event.preventDefault();
-
-    for(let key in fields) {
-      if(fields[key].valid === false) {
+    
+    for(let field of Object.entries(fieldsAreValid)) {
+      if(field[1] === false) {
         setShowErrors(true);
         return;
       }
@@ -104,13 +114,8 @@ export default function SimulationForm (props) {
     );
   }
 
-  function updateValidity (inputName, valid) {
-    for(let key in fields) {
-      if(fields[key].name === inputName) {
-        fields[key].valid = valid;
-        console.log(fields[key].valid);
-      }
-    }
+  function updateFieldIsValid (inputName, isValid) {
+    setFieldsAreValid ({...fieldsAreValid, [inputName]: isValid});
   }
 
   return (
@@ -126,11 +131,11 @@ export default function SimulationForm (props) {
                   id={field.name}
                   name={field.name}
                   placeholder={field.placeholder}
-                  updateValidity={(valid) => {updateValidity(field.name, valid)}}
+                  updateFieldIsValid={(valid) => {updateFieldIsValid(field.name, valid)}}
                 />
                 <p
                   className={style['error']}
-                  show={(showErrors && !field.valid) ? 'true' : 'false'}
+                  show={(showErrors === true && fieldsAreValid[field.name] === false) ? 'true' : 'false'}
                 >
                   {field.error}
                 </p>

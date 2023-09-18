@@ -6,7 +6,7 @@ export default function DateInput (props) {
   function validate (event) {
     let numbersOnlyValue = event.target.value.replaceAll('/', '');
     
-    props.updateValidity(numbersOnlyValue.length === 8);
+    props.updateFieldIsValid(numbersOnlyValue.length === 8);
   }
 
   const options = maskitoDateOptionsGenerator(

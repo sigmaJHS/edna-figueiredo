@@ -2,7 +2,7 @@ import Input from './Input'
 
 export default function TextInput (props) {
   function validate (event) {
-    props.updateValidity(event.target.value.length > 2);
+    props.updateFieldIsValid(event.target.value.length > 2);
   }
 
   return (

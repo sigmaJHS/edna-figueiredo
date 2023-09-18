@@ -5,7 +5,7 @@ export default function ContactInput (props) {
     let value = event.target.value,
         numbersOnlyValue = value.replaceAll(/\D/g, '');
         
-    props.updateValidity(
+    props.updateFieldIsValid(
       (
         numbersOnlyValue.length >= 8 && numbersOnlyValue.length <= 15
       ) || (
