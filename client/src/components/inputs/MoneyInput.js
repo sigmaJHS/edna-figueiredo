@@ -2,12 +2,12 @@ import Input from './Input'
 import { maskitoNumberOptionsGenerator } from '@maskito/kit';
 
 export default function MoneyInput (props) {
-  function validate (event) {
+  function validate (value) {
     let rawValue = parseFloat(
-      event.target.value.replaceAll(/R|\$| /g, '').replace(',','.')
+      value.replaceAll(/R|\$| /g, '').replace(',','.')
     );
     
-    props.updateIsValid(rawValue > 0);
+    return (rawValue > 0);
   }
 
   const options = maskitoNumberOptionsGenerator(
@@ -22,10 +22,9 @@ export default function MoneyInput (props) {
 
   return (
     <Input
+      {...props}
       type='text'
-      name={props.name}
-      placeholder={props.placeholder}
-      onInput={validate}
+      additionalValidation={validate}
       maskOptions={options}
     />
   )

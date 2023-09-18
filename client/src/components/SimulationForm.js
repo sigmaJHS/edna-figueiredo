@@ -71,6 +71,7 @@ export default function SimulationForm (props) {
         name='nome'
         label='Nome completo'
         placeholder='ex. Fulano Da Silva'
+        required={true}
         showErrors={(showErrors === true && fieldsAreValid.nome === false)}
         errorMessage='favor, digite seu nome completo'
         updateIsValid={updateFieldIsValid}
@@ -80,6 +81,7 @@ export default function SimulationForm (props) {
         name='nascimento'
         label='Data de nascimento'
         placeholder='ex. 01/01/2023'
+        required={true}
         showErrors={(showErrors === true && fieldsAreValid.nascimento === false)}
         errorMessage='Por favor, digite uma data válida'
         updateIsValid={updateFieldIsValid}
@@ -89,6 +91,7 @@ export default function SimulationForm (props) {
         name='cidade'
         label='Cidade onde mora'
         placeholder='ex. Itatiba/SP'
+        required={true}
         showErrors={(showErrors === true && fieldsAreValid.cidade === false)}
         errorMessage='Por favor, digite o nome da sua cidade'
         updateIsValid={updateFieldIsValid}
