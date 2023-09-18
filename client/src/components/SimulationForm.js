@@ -21,7 +21,7 @@ export default function SimulationForm (props) {
 
   function handleSubmit (event) {
     event.preventDefault();
-    console.log(Object.entries(fieldsAreValid));
+    
     for(let field of Object.entries(fieldsAreValid)) {
       if(field[1] === false) {
         setShowErrors(true);
