@@ -23,6 +23,16 @@ export default function SimulationForm (props) {
     setFieldsAreValid ({...fieldsAreValid, [fieldName]: isValid});
   }
 
+  function fullNameValidation (value) {
+    return (
+      (
+        value.indexOf(' ') > 2
+      ) && (
+        value.lastIndexOf(' ') < value.length - 3
+      )
+    )
+  }
+
   function validateForm () {
     for(let field of Object.entries(fieldsAreValid)) {
       if(field[1] === false) {
@@ -59,6 +69,7 @@ export default function SimulationForm (props) {
         label='Nome completo'
         placeholder='ex. Fulano Da Silva'
         required={true}
+        additionalValidation={fullNameValidation}
         showErrors={(showErrors === true && fieldsAreValid.nome === false)}
         errorMessage='favor, digite seu nome completo'
         updateIsValid={updateFieldIsValid}

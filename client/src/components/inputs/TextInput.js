@@ -2,7 +2,12 @@ import Input from './Input'
 
 export default function TextInput (props) {
   function validate (value) {
-    return (value.length > 2);
+    let additionalisValid =
+      (props.additionalValidation === undefined)
+      ? true
+      : props.additionalValidation(value);
+
+    return (value.length > 2 && additionalisValid);
   }
 
   return (

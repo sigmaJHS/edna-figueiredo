@@ -5,7 +5,7 @@ export default function Input (props) {
 
   function validate (event) {
     let
-      value = event.target.value,
+      value = event.target.value.trim(),
       additionalisValid =
         (props.additionalValidation === undefined)
         ? false

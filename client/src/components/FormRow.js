@@ -34,6 +34,7 @@ export default function FormRow (props) {
         name={props.name}
         placeholder={props.placeholder}
         required={props.required}
+        additionalValidation={props.additionalValidation}
         updateIsValid={(isValid) => props.updateIsValid(props.name, isValid)}
       />
       <p
