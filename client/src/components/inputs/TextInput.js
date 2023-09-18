@@ -1,18 +1,15 @@
-import { forwardRef } from 'react'
+import Input from './Input'
 
-export default forwardRef(
-  function TextInput (props, ref) {
-    function validate (event) {
-      props.updateValidity(event.target.value.length > 2);
-    }
-  
-    return (
-      <input
-        name={props.name}
-        type={'text'}
-        placeholder={props.placeholder ?? ''}
-        onInput={validate}
-      />
-    );
+export default function TextInput (props) {
+  function validate (event) {
+    props.updateFieldIsValid(event.target.value.length > 2);
   }
-)
+
+  return (
+    <Input
+      {...props}
+      type={'text'}
+      onInput={validate}
+    />
+  );
+}

@@ -35,14 +35,8 @@ export default function App() {
     setIsModalOpen(!isModalOpen);
   }
 
-  function closeNotification (status, message) {
-    setNotification (
-      {
-        'isOpen': false,
-        'message': message,
-        'status': status
-      }
-    );
+  function closeNotification () {
+    setNotification ({...notification, 'isOpen': false});
   }
 
   function triggerNotification (status, message) {
@@ -58,10 +52,10 @@ export default function App() {
 
     setTimeout (
       function () {
-        closeNotification(status, message);
+        closeNotification();
       },
       5000
-    )
+    );
   }
 
   return (

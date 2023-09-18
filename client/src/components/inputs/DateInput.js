@@ -1,3 +1,4 @@
+import Input from './Input'
 import { useMaskito } from '@maskito/react';
 import { maskitoDateOptionsGenerator } from '@maskito/kit';
 
@@ -5,7 +6,7 @@ export default function DateInput (props) {
   function validate (event) {
     let numbersOnlyValue = event.target.value.replaceAll('/', '');
     
-    props.updateValidity(numbersOnlyValue.length === 8);
+    props.updateFieldIsValid(numbersOnlyValue.length === 8);
   }
 
   const options = maskitoDateOptionsGenerator(
@@ -16,10 +17,9 @@ export default function DateInput (props) {
   );
 
   return (
-    <input
+    <Input
+      {...props}
       type='text'
-      name={props.name}
-      placeholder={props.placeholder}
       ref={useMaskito({options})}
       onInput={validate}
     />

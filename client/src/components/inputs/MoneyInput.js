@@ -1,3 +1,4 @@
+import Input from './Input'
 import { useMaskito } from '@maskito/react';
 import { maskitoNumberOptionsGenerator } from '@maskito/kit';
 
@@ -7,7 +8,7 @@ export default function MoneyInput (props) {
       event.target.value.replaceAll(/R|\$| /g, '').replace(',','.')
     );
     
-    props.updateValidity(rawValue > 0);
+    props.updateFieldIsValid(rawValue > 0);
   }
 
   const options = maskitoNumberOptionsGenerator(
@@ -21,10 +22,9 @@ export default function MoneyInput (props) {
   );
 
   return (
-    <input
+    <Input
+      {...props}
       type='text'
-      name={props.name}
-      placeholder={props.placeholder}
       ref={useMaskito({options})}
       onInput={validate}
     />
