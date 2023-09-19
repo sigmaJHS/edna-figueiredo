@@ -1,5 +1,6 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import { LoadingContext } from './contexts/LoadingContext'
+import { NotificationContext } from './contexts/NotificationContext'
 
 import Topbar from './components/Topbar'
 import Presentation from './components/Presentation'
@@ -61,27 +62,27 @@ export default function App() {
 
   return (
     <LoadingContext.Provider value={setLoading}>
-      <Topbar />
-      <Presentation
-        toggleModal={toggleModalOpen}
-      />
-      <ProgressGallery />
-      <Footer />
-      <Modal
-        isOpen={isModalOpen}
-        toggle={toggleModalOpen}
-      >
-        <SimulationForm
-          triggerNotification={triggerNotification}
+      <NotificationContext.Provider value={triggerNotification}>
+        <Topbar />
+        <Presentation
+          toggleModal={toggleModalOpen}
         />
-      </Modal>
-      <Loading isLoading={isLoading} />
-      <Notification
-        isOpen={notification.isOpen}
-        close={closeNotification}
-        message={notification.message}
-        status={notification.status}
-      />
+        <ProgressGallery />
+        <Footer />
+        <Modal
+          isOpen={isModalOpen}
+          toggle={toggleModalOpen}
+        >
+          <SimulationForm/>
+        </Modal>
+        <Loading isLoading={isLoading} />
+        <Notification
+          isOpen={notification.isOpen}
+          close={closeNotification}
+          message={notification.message}
+          status={notification.status}
+        />
+      </NotificationContext.Provider>
     </LoadingContext.Provider>
   );
 }

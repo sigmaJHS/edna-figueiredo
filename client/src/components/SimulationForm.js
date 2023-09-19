@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { NotificationContext } from './../contexts/NotificationContext'
 
 import style from './SimulationForm.module.scss'
 
@@ -7,7 +8,9 @@ import FormRow from './FormRow'
 import ButtonRow from './ButtonRow';
 
 export default function SimulationForm (props) {
+  const triggerNotification = useContext(NotificationContext);
   const [showErrors, setShowErrors] = useState(false);
+
   const [fieldsAreValid, setFieldsAreValid] = useState(
     {
       'nome': false,
@@ -45,11 +48,11 @@ export default function SimulationForm (props) {
   }
 
   function success (response) {
-    props.triggerNotification('success', 'Simulação solicitada! Aguarde nosso contato nos próximos dias.')
+    triggerNotification('success', 'Simulação solicitada! Aguarde nosso contato nos próximos dias.')
   }
 
   function error (response) {
-    props.triggerNotification('error', 'Ocorreu um erro ao solicitar sua simulação, por favor tente novamente mais tarde.')
+    triggerNotification('error', 'Ocorreu um erro ao solicitar sua simulação, por favor tente novamente mais tarde.')
   }
 
   return (
@@ -59,7 +62,6 @@ export default function SimulationForm (props) {
       validate={validateForm}
       success={success}
       error={error}
-      triggerNotification={props.triggerNotification}
     >
       <h3 className={style['title']}>Faça uma simulação gratuita!</h3>
       <FormRow
