@@ -59,7 +59,6 @@ export default function SimulationForm (props) {
       validate={validateForm}
       success={success}
       error={error}
-      setLoading={props.setLoading}
       triggerNotification={props.triggerNotification}
     >
       <h3 className={style['title']}>Faça uma simulação gratuita!</h3>

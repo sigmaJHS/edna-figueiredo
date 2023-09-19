@@ -1,6 +1,9 @@
 import axios from 'axios'
+import { useContext } from 'react'
+import { LoadingContext } from './../contexts/LoadingContext'
 
 export default function Form (props) {
+  const setLoading = useContext(LoadingContext);
 
   function handleSubmit (event) {
     event.preventDefault();
@@ -9,7 +12,7 @@ export default function Form (props) {
       return;
     }
 
-    props.setLoading(true);
+    setLoading(true);
 
     axios.post(
       props.action,
@@ -26,7 +29,7 @@ export default function Form (props) {
       props.error
     ).finally(
       function () {
-        props.setLoading(false);
+        setLoading(false);
       }
     );
   }

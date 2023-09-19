@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { LoadingContext } from './contexts/LoadingContext'
 
 import Topbar from './components/Topbar'
 import Presentation from './components/Presentation'
@@ -10,8 +11,8 @@ import Loading from './components/Loading'
 import Notification from './components/Notification'
 
 export default function App() {
-  const [isModalOpen, setIsModalOpen] = useState (false);
   const [isLoading, setLoading] = useState (false);
+  const [isModalOpen, setIsModalOpen] = useState (false);
   const [notification, setNotification] = useState (
     {
       'isOpen': false,
@@ -59,7 +60,7 @@ export default function App() {
   }
 
   return (
-    <div>
+    <LoadingContext.Provider value={setLoading}>
       <Topbar />
       <Presentation
         toggleModal={toggleModalOpen}
@@ -71,7 +72,6 @@ export default function App() {
         toggle={toggleModalOpen}
       >
         <SimulationForm
-          setLoading={setLoading}
           triggerNotification={triggerNotification}
         />
       </Modal>
@@ -82,6 +82,6 @@ export default function App() {
         message={notification.message}
         status={notification.status}
       />
-    </div>
+    </LoadingContext.Provider>
   );
 }
