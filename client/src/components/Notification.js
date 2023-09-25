@@ -20,7 +20,7 @@ export default function Notification (props) {
     >
       <div
         className={style['close']}
-        onClick={() => props.close(props.status, props.message)}
+        onClick={() => props.close()}
       >
         x
       </div>
