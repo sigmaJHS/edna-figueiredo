@@ -77,10 +77,8 @@ export default function App() {
         </Modal>
         <Loading isLoading={isLoading} />
         <Notification
-          isOpen={notification.isOpen}
+          {...notification}
           close={closeNotification}
-          message={notification.message}
-          status={notification.status}
         />
       </NotificationContext.Provider>
     </LoadingContext.Provider>
